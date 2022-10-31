@@ -30,7 +30,7 @@ class ksdf_get_all(Resource):
 class ksdf_all_packet_counters(Resource):
     def get(self):
         rpc = """<GetPacketCounters xmlns="urn:kaloom:faas:fabrics"></GetPacketCounters>"""
-        return kaloom_netconf_rpc(rpc)
+        return kaloom_netconf_rpc(rpc)['fabrics:Results']
 
 def kaloom_netconf_get_all():
     with manager.connect(host=klm_host, port=830, username=klm_user, password=klm_pwd, hostkey_verify=False) as m:
