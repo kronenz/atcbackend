@@ -200,3 +200,12 @@ ncclient.transport.errors.SSHError: Could not open socket to 10.0.20.150:830
 192.168.15.174 - - [01/Nov/2022 01:43:34] "GET / HTTP/1.1" 200 -
 192.168.15.174 - - [01/Nov/2022 01:43:34] "GET /swagger.json HTTP/1.1" 200 -
 192.168.15.174 - - [01/Nov/2022 01:43:51] "GET /ksdf_get_all HTTP/1.1" 200 -
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Restarting with watchdog (inotify)
+  File "/home/forwiz/atc_3rd_year/backend/atcbackend/main.py", line 39
+    <<<<<<< HEAD
+    ^
+SyntaxError: invalid syntax
