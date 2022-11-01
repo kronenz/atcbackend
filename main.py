@@ -36,6 +36,8 @@ class ksdf_all_packet_counters(Resource):
     def get(self):
         rpc = """<GetPacketCounters xmlns="urn:kaloom:faas:fabrics"></GetPacketCounters>"""
         return kaloom_netconf_rpc(rpc)['fabrics:Results']
+<<<<<<< HEAD
+=======
 
 @api.route('/api/ksdf/all_tp_oper')
 class ksdf_all_tp_oper(Resource):
@@ -43,6 +45,7 @@ class ksdf_all_tp_oper(Resource):
         rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/><Fabric><FabricID>123</FabricID>
         <Node><Role></Role><TerminationPoint><OperState>UP</OperState></TerminationPoint></Node></Fabric></filter></get>""" 
         return kaloom_netconf_rpc(rpc)['data']['top']['fabrics:Fabric']
+>>>>>>> e64132d01d6e8bb6dc8f86460aa948e37abbb302
 
 @api.route('/api/ksdf/nodes_info_oper')
 class ksdf_all_nodes_info_oper(Resource):
@@ -68,4 +71,5 @@ def kaloom_netconf_rpc(rpc):
         return {"error": "cannot process the request"}
 
 if __name__ == "__main__":
+    app.run(debug=True, host='192.168.15.131', port=8000)
     app.run(debug=True, host='0.0.0.0', port=8000)

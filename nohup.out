@@ -1,0 +1,211 @@
+ * Serving Flask app "main" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://192.168.15.131:8000/ (Press CTRL+C to quit)
+ * Restarting with watchdog (inotify)
+ * Debugger is active!
+ * Debugger PIN: 123-565-102
+192.168.15.99 - - [31/Oct/2022 12:48:13] "GET / HTTP/1.1" 200 -
+192.168.15.99 - - [31/Oct/2022 12:48:13] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 00:14:37] "GET / HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 00:14:37] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:18:47] "GET / HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:18:47] "GET /swaggerui/droid-sans.css HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:18:47] "GET /swaggerui/swagger-ui.css HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:18:47] "GET /swaggerui/swagger-ui-bundle.js HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:18:47] "GET /swaggerui/swagger-ui-standalone-preset.js HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:18:47] "GET /swaggerui/swagger-ui.css.map HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:18:47] "GET /swaggerui/swagger-ui-bundle.js.map HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:18:47] "GET /swaggerui/swagger-ui-standalone-preset.js.map HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:18:47] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:18:48] "GET /swaggerui/favicon-32x32.png HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:18:48] "GET / HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:18:48] "GET /swaggerui/droid-sans.css HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:18:48] "GET /swaggerui/swagger-ui.css HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:18:48] "GET /swaggerui/swagger-ui-bundle.js HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:18:48] "GET /swaggerui/swagger-ui-standalone-preset.js HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:18:48] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:18:48] "GET /swaggerui/favicon-32x32.png HTTP/1.1" 200 -
+192.168.15.112 - - [01/Nov/2022 01:21:10] "GET /ksdf_all_packet_counters HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 671, in error_router
+    return original_handler(f)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 669, in error_router
+    return self.handle_error(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 671, in error_router
+    return original_handler(f)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 669, in error_router
+    return self.handle_error(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 403, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/views.py", line 89, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/resource.py", line 49, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/forwiz/atc_3rd_year/backend/atcbackend/main.py", line 33, in get
+    return kaloom_netconf_rpc(rpc)['fabrics:Results']
+  File "/home/forwiz/atc_3rd_year/backend/atcbackend/main.py", line 42, in kaloom_netconf_rpc
+    with manager.connect(host=klm_host, port=830, username=klm_user, password=klm_pwd, hostkey_verify=False) as m:
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/ncclient/manager.py", line 176, in connect
+    return connect_ssh(*args, **kwds)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/ncclient/manager.py", line 143, in connect_ssh
+    session.connect(*args, **kwds)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/ncclient/transport/ssh.py", line 293, in connect
+    raise SSHError("Could not open socket to %s:%s" % (host, port))
+ncclient.transport.errors.SSHError: Could not open socket to 10.0.20.150:830
+192.168.15.174 - - [01/Nov/2022 01:21:20] "GET /ksdf_all_packet_counters HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 671, in error_router
+    return original_handler(f)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 669, in error_router
+    return self.handle_error(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 671, in error_router
+    return original_handler(f)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 669, in error_router
+    return self.handle_error(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 403, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/views.py", line 89, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/resource.py", line 49, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/forwiz/atc_3rd_year/backend/atcbackend/main.py", line 33, in get
+    return kaloom_netconf_rpc(rpc)['fabrics:Results']
+  File "/home/forwiz/atc_3rd_year/backend/atcbackend/main.py", line 42, in kaloom_netconf_rpc
+    with manager.connect(host=klm_host, port=830, username=klm_user, password=klm_pwd, hostkey_verify=False) as m:
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/ncclient/manager.py", line 176, in connect
+    return connect_ssh(*args, **kwds)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/ncclient/manager.py", line 143, in connect_ssh
+    session.connect(*args, **kwds)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/ncclient/transport/ssh.py", line 293, in connect
+    raise SSHError("Could not open socket to %s:%s" % (host, port))
+ncclient.transport.errors.SSHError: Could not open socket to 10.0.20.150:830
+192.168.15.174 - - [01/Nov/2022 01:21:24] "GET / HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:21:24] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:21:32] "GET /ksdf_all_packet_counters HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 01:22:09] "GET /ksdf_get_all HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 671, in error_router
+    return original_handler(f)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 669, in error_router
+    return self.handle_error(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 671, in error_router
+    return original_handler(f)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 669, in error_router
+    return self.handle_error(e)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/api.py", line 403, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/views.py", line 89, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask_restx/resource.py", line 49, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/forwiz/atc_3rd_year/backend/atcbackend/main.py", line 27, in get
+    return kaloom_netconf_get_all()
+  File "/home/forwiz/atc_3rd_year/backend/atcbackend/main.py", line 36, in kaloom_netconf_get_all
+    with manager.connect(host=klm_host, port=830, username=klm_user, password=klm_pwd, hostkey_verify=False) as m:
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/ncclient/manager.py", line 176, in connect
+    return connect_ssh(*args, **kwds)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/ncclient/manager.py", line 143, in connect_ssh
+    session.connect(*args, **kwds)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/ncclient/transport/ssh.py", line 293, in connect
+    raise SSHError("Could not open socket to %s:%s" % (host, port))
+ncclient.transport.errors.SSHError: Could not open socket to 10.0.20.150:830
+192.168.15.99 - - [01/Nov/2022 01:22:09] "GET /ksdf_get_all?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 01:22:09] "GET /ksdf_get_all?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 01:22:09] "GET /ksdf_get_all?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 01:22:09] "GET /ksdf_get_all?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 01:22:09] "GET /ksdf_get_all?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:22:29] "GET /ksdf_get_all HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:28:32] "GET / HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:29:01] "GET /ksdf_get_all HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:29:10] "GET / HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:29:10] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:29:26] "GET /ksdf_get_all HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:29:26] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.15.174 - - [01/Nov/2022 01:43:20] "GET /ksdf_get_all HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:43:34] "GET / HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:43:34] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 01:43:51] "GET /ksdf_get_all HTTP/1.1" 200 -
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Restarting with watchdog (inotify)
+  File "/home/forwiz/atc_3rd_year/backend/atcbackend/main.py", line 39
+    <<<<<<< HEAD
+    ^
+SyntaxError: invalid syntax
