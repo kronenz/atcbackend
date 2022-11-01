@@ -209,3 +209,24 @@ ncclient.transport.errors.SSHError: Could not open socket to 10.0.20.150:830
     <<<<<<< HEAD
     ^
 SyntaxError: invalid syntax
+ * Serving Flask app "main" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://192.168.15.131:8000/ (Press CTRL+C to quit)
+ * Restarting with watchdog (inotify)
+ * Debugger is active!
+ * Debugger PIN: 995-432-664
+192.168.15.99 - - [01/Nov/2022 02:13:06] "GET / HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 02:13:06] "GET /swaggerui/droid-sans.css HTTP/1.1" 304 -
+192.168.15.99 - - [01/Nov/2022 02:13:06] "GET /swaggerui/swagger-ui-bundle.js HTTP/1.1" 304 -
+192.168.15.99 - - [01/Nov/2022 02:13:06] "GET /swaggerui/swagger-ui.css HTTP/1.1" 304 -
+192.168.15.99 - - [01/Nov/2022 02:13:06] "GET /swaggerui/swagger-ui-standalone-preset.js HTTP/1.1" 304 -
+192.168.15.99 - - [01/Nov/2022 02:13:06] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 02:13:12] "GET /api/ksdf/get_all_tp_oper HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 02:13:42] "GET /api/ksdf/get_all_tp_oper HTTP/1.1" 200 -
+192.168.15.99 - - [01/Nov/2022 02:13:42] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.15.174 - - [01/Nov/2022 02:15:42] "GET / HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 02:15:43] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.174 - - [01/Nov/2022 02:15:57] "GET /api/ksdf/get_all_tp_oper HTTP/1.1" 200 -
