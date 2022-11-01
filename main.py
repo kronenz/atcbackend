@@ -37,11 +37,19 @@ class ksdf_all_packet_counters(Resource):
         rpc = """<GetPacketCounters xmlns="urn:kaloom:faas:fabrics"></GetPacketCounters>"""
         return kaloom_netconf_rpc(rpc)['fabrics:Results']
 
-@api.route('/api/ksdf/get_all_tp_oper')
-class ksdf_get_all_tp_oper(Resource):
+@api.route('/api/ksdf/all_tp_oper')
+class ksdf_all_tp_oper(Resource):
     def get(self):
         rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/><Fabric><FabricID>123</FabricID>
         <Node><Role></Role><TerminationPoint><OperState>UP</OperState></TerminationPoint></Node></Fabric></filter></get>""" 
+        return kaloom_netconf_rpc(rpc)['data']['top']['fabrics:Fabric']
+
+@api.route('/api/ksdf/nodes_info_oper')
+class ksdf_all_nodes_info_oper(Resource):
+    def get(self):
+        rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/>
+            <Fabric><FabricID>123</FabricID><Node><Name/><Role/><DeviceID/><DeviceMAC/><OperState>UP</OperState><System/></Node></Fabric>
+        </filter></get>""" 
         return kaloom_netconf_rpc(rpc)['data']['top']['fabrics:Fabric']
 
 def kaloom_netconf_get_all():
