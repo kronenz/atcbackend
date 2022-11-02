@@ -47,10 +47,7 @@ class ksdf_all_tp_oper(Resource):
 @api.route('/api/ksdf/nodes_info_oper')
 class ksdf_all_nodes_info_oper(Resource):
     def get(self):
-        rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/>
-            <Fabric><FabricID>123</FabricID><Node><Name/><Role/><DeviceID/><DeviceMAC/><OperState>UP</OperState><System/></Node></Fabric>
-        </filter></get>""" 
-        return kaloom_netconf_rpc(rpc)['data']['top']['fabrics:Fabric']
+        return get_ksdf_all_nodes_info_oper()
 
 def kaloom_netconf_get_all():
     with manager.connect(host=klm_host, port=830, username=klm_user, password=klm_pwd, hostkey_verify=False) as m:
@@ -67,6 +64,24 @@ def kaloom_netconf_rpc(rpc):
     except: 
         return {"error": "cannot process the request"}
 
+#Kaloom Topology Graph 관련
+
+def get_ksdf_all_nodes_info_oper():
+    rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/>
+            <Fabric><FabricID>123</FabricID><Node><Name/><Role/><DeviceID/><DeviceMAC/><OperState>UP</OperState><System/></Node></Fabric>
+        </filter></get>""" 
+    return kaloom_netconf_rpc(rpc)['data']['top']['fabrics:Fabric']
+
+def get_min_nodes_dict():
+    reg_nodes_dict={}
+    nodes_dict=get_ksdf_all_nodes_info_oper()['fabrics:Node']
+    for node in nodes_dict: 
+        f_name=node['fabrics:Name']
+        f_node_id=node['fabrics:NodeID']
+        f_role=node['fabrics:Role']
+        reg_nodes_dict[f_node_id]=(f_name,f_role)
+    return reg_nodes_dict
+
 if __name__ == "__main__":
     app.run(debug=True, host='192.168.15.131', port=8000)
-    app.run(debug=True, host='0.0.0.0', port=8000)
+    #app.run(debug=True, host='0.0.0.0', port=8000)
