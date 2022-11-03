@@ -128,4 +128,5 @@ def get_lldp_info(tp):
         return anno_dict
 
 if __name__ == "__main__":
-    #app.run(debug=True, host='192.168.15.131', port=8000)
+
+    app.run(debug=True, host='192.168.15.131', port=8000)
