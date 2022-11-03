@@ -1,15 +1,13 @@
 #pip install flask 
-#pip install flask_restx
 #pip install flask_cors
 #pip install ncclient
-#pip install xmltodict
+#pip xmltodict
 #pip install apscheduler
 
 from flask import Flask  # 서버 구현을 위한 Flask 객체 import
 from flask_restx import Api, Resource  # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS, cross_origin
 
-from ksdf_netconf import * 
 from ksdf_netconf import *
 from ksdf_topology import *
 from ksdf_packet_counter import *
@@ -37,6 +35,8 @@ def packet_counter_sensor():
 sched = BackgroundScheduler(daemon=True)
 sched.add_job(packet_counter_sensor, 'interval', seconds=collection_interval)
 sched.start()
+
+##Flask Setup
 
 app = Flask(__name__)  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 CORS(app)
@@ -74,7 +74,7 @@ class ksdf_topology_node_link(Resource):
 
 #packet_counter_per_tp
 @api.route('/api/ksdf/packet_counter/per_tp')
-class ksdf_packet_counter_per_tp(Resource):
+class ksdf_packet_counter(Resource):
     def get(self):
         return {
             "cur_pkt_counter": cur_packet_counter,
@@ -82,5 +82,17 @@ class ksdf_packet_counter_per_tp(Resource):
             "cur_pkt_rate": cur_gcd_rate 
         }
 
+#telemetry system info
+@api.route('/api/ksdf/telemetry/info')
+class ksdf_telemetry_info(Resource):
+    def get(self):
+        return get_ksdf_telemetry_info()
+
+def get_ksdf_telemetry_info(): 
+    rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/><telemetry-system></telemetry-system></filter></get>"""
+    return kaloom_netconf_rpc(rpc)['data']['top']['fabrics:telemetry-system']
+
 if __name__ == "__main__":
-    app.run(debug=True, host='192.168.15.131', port=8000)
+    #app.run(debug=True, host='192.168.15.131', port=8000)
+    app.run(debug=True, host='0.0.0.0', port=8000)
+
