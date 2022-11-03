@@ -27,14 +27,16 @@ def packet_counter_sensor():
     global cur_gcd_rate
     next_cur_packet_counter=get_cur_counter()
     cur_gcd=get_counter_diff(next_cur_packet_counter,cur_packet_counter)
-    print(cur_gcd)
+    #print(cur_gcd)
     cur_gcd_rate=get_rate_from_gcd(cur_gcd)
     cur_packet_counter=next_cur_packet_counter
-    print(cur_gcd_rate)
+    #print(cur_gcd_rate)
 
 sched = BackgroundScheduler(daemon=True)
 sched.add_job(packet_counter_sensor, 'interval', seconds=collection_interval)
 sched.start()
+
+##Flask Setup
 
 app = Flask(__name__)  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 CORS(app)
@@ -80,6 +82,17 @@ class ksdf_packet_counter(Resource):
             "cur_pkt_rate": cur_gcd_rate 
         }
 
+#telemetry system info
+@api.route('/api/ksdf/telemetry/info')
+class ksdf_telemetry_info(Resource):
+    def get(self):
+        return get_ksdf_telemetry_info()
+
+def get_ksdf_telemetry_info(): 
+    rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/><telemetry-system></telemetry-system></filter></get>"""
+    return kaloom_netconf_rpc(rpc)['data']['top']['fabrics:telemetry-system']
+
 if __name__ == "__main__":
     #app.run(debug=True, host='192.168.15.131', port=8000)
     app.run(debug=True, host='0.0.0.0', port=8000)
+
