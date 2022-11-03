@@ -8,6 +8,7 @@ from flask import Flask  # 서버 구현을 위한 Flask 객체 import
 from flask_restx import Api, Resource  # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS, cross_origin
 
+from ksdf_netconf import * 
 from ksdf_netconf import *
 from ksdf_topology import *
 from ksdf_packet_counter import *
@@ -27,10 +28,10 @@ def packet_counter_sensor():
     global cur_gcd_rate
     next_cur_packet_counter=get_cur_counter()
     cur_gcd=get_counter_diff(next_cur_packet_counter,cur_packet_counter)
-    print(cur_gcd)
+    #print(cur_gcd)
     cur_gcd_rate=get_rate_from_gcd(cur_gcd)
     cur_packet_counter=next_cur_packet_counter
-    print(cur_gcd_rate)
+    #print(cur_gcd_rate)
 
 sched = BackgroundScheduler(daemon=True)
 sched.add_job(packet_counter_sensor, 'interval', seconds=collection_interval)
@@ -72,7 +73,7 @@ class ksdf_topology_node_link(Resource):
 
 #packet_counter_per_tp
 @api.route('/api/ksdf/packet_counter/per_tp')
-class ksdf_packet_counter(Resource):
+class ksdf_packet_counter_per_tp(Resource):
     def get(self):
         return {
             "cur_pkt_counter": cur_packet_counter,
@@ -81,5 +82,4 @@ class ksdf_packet_counter(Resource):
         }
 
 if __name__ == "__main__":
-
     app.run(debug=True, host='192.168.15.131', port=8000)

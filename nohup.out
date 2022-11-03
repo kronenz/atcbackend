@@ -1188,3 +1188,131 @@ OSError: [Errno 98] Address already in use
 192.168.15.174 - - [03/Nov/2022 04:13:27] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
 192.168.15.174 - - [03/Nov/2022 04:13:32] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
 192.168.15.174 - - [03/Nov/2022 04:13:33] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 04:13:40] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 04:13:41] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 04:16:07] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 04:16:08] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 04:16:19] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 04:16:44] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 04:16:45] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 04:17:15] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 04:17:16] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 04:17:25] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+ * Serving Flask app "main" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+Traceback (most recent call last):
+  File "/home/forwiz/atc_3rd_year/backend/atcbackend/main.py", line 85, in <module>
+    app.run(debug=True, host='192.168.15.131', port=8000)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/flask/app.py", line 990, in run
+    run_simple(host, port, self, **options)
+  File "/home/forwiz/anaconda3/lib/python3.9/site-packages/werkzeug/serving.py", line 991, in run_simple
+    s.bind(server_address)
+OSError: [Errno 98] Address already in use
+ * Serving Flask app "main" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://192.168.15.131:8000/ (Press CTRL+C to quit)
+ * Restarting with watchdog (inotify)
+ * Debugger is active!
+ * Debugger PIN: 504-150-443
+192.168.15.99 - - [03/Nov/2022 07:54:59] "GET / HTTP/1.1" 200 -
+192.168.15.99 - - [03/Nov/2022 07:54:59] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.99 - - [03/Nov/2022 07:55:09] "GET /api/ksdf/packet_counter/per_tp HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:00:35] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:03:28] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:04:30] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:05:26] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:06:58] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:07:12] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:07:18] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:08:01] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:08:12] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:08:38] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:12:06] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:15:53] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:16:10] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:16:18] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:17:50] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:31:32] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:33:24] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.99 - - [03/Nov/2022 08:33:40] "GET / HTTP/1.1" 200 -
+192.168.15.99 - - [03/Nov/2022 08:33:41] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:34:18] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:34:19] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:34:45] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:34:46] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:34:53] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:34:54] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:35:00] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:35:01] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:36:11] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:36:12] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:36:51] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:36:52] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:37:14] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:37:15] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:37:59] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:38:00] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:38:50] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:38:51] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:38:59] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:39:00] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:39:29] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:40:05] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:40:06] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:40:07] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:40:13] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:40:14] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:40:15] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:43:47] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:43:47] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:43:49] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:46:23] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:46:24] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:46:25] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:46:32] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:46:33] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:46:34] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:49:47] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:49:48] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:49:49] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:50:53] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:50:54] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:50:55] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:51:02] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:53:05] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:53:06] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:53:07] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:53:16] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:53:17] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:53:19] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:55:49] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:55:50] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:55:51] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:55:54] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:55:55] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:55:56] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:56:47] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:56:48] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:56:49] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:59:47] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:59:47] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 08:59:48] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.99 - - [03/Nov/2022 09:02:15] "GET / HTTP/1.1" 200 -
+192.168.15.99 - - [03/Nov/2022 09:02:15] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.99 - - [03/Nov/2022 09:02:20] "GET / HTTP/1.1" 200 -
+192.168.15.99 - - [03/Nov/2022 09:02:21] "GET /swagger.json HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:02:40] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:02:41] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:02:42] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:03:20] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:03:21] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:03:22] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:05:31] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:05:33] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:05:34] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
