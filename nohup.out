@@ -1369,3 +1369,6 @@ OSError: [Errno 98] Address already in use
 192.168.15.174 - - [03/Nov/2022 09:20:51] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
 192.168.15.174 - - [03/Nov/2022 09:20:52] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
 192.168.15.174 - - [03/Nov/2022 09:20:53] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:21:25] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:21:26] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
+192.168.15.174 - - [03/Nov/2022 09:21:27] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
