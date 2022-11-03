@@ -2,15 +2,39 @@
 #pip install flask_cors
 #pip install ncclient
 #pip xmltodict
+#pip install apscheduler
 
 from flask import Flask  # 서버 구현을 위한 Flask 객체 import
 from flask_restx import Api, Resource  # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS, cross_origin
 
-from ncclient import manager
-from ncclient.xml_ import to_ele
+from ksdf_netconf import *
+from ksdf_topology import *
+from ksdf_packet_counter import *
 
-import xmltodict,json
+from apscheduler.schedulers.background import BackgroundScheduler
+
+# Packet Counter 수집 Sensor
+
+collection_interval=5
+cur_packet_counter=get_cur_counter()
+cur_gcd=None
+cur_gcd_rate=None
+
+def packet_counter_sensor():
+    global cur_packet_counter
+    global cur_gcd
+    global cur_gcd_rate
+    next_cur_packet_counter=get_cur_counter()
+    cur_gcd=get_counter_diff(next_cur_packet_counter,cur_packet_counter)
+    print(cur_gcd)
+    cur_gcd_rate=get_rate_from_gcd(cur_gcd)
+    cur_packet_counter=next_cur_packet_counter
+    print(cur_gcd_rate)
+
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(packet_counter_sensor, 'interval', seconds=collection_interval)
+sched.start()
 
 app = Flask(__name__)  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 CORS(app)
@@ -21,11 +45,6 @@ class HelloWorld(Resource):
     def get(self):  # GET 요청시 리턴 값에 해당 하는 dict를 JSON 형태로 반환
         return {"hello": "world!"}
 
-#Kaloom NETCONF 접속 정보
-klm_host = "10.0.20.150"
-klm_user = "admin"
-klm_pwd = "Forwiz_SDF1"
-
 @api.route('/api/ksdf/get_all')
 class ksdf_get_all(Resource):
     def get(self):
@@ -34,8 +53,7 @@ class ksdf_get_all(Resource):
 @api.route('/api/ksdf/all_packet_counters')
 class ksdf_all_packet_counters(Resource):
     def get(self):
-        rpc = """<GetPacketCounters xmlns="urn:kaloom:faas:fabrics"></GetPacketCounters>"""
-        return kaloom_netconf_rpc(rpc)['fabrics:Results']
+        return get_ksdf_all_packet_counters()
 
 @api.route('/api/ksdf/all_tp_oper')
 class ksdf_all_tp_oper(Resource):
@@ -52,80 +70,15 @@ class ksdf_topology_node_link(Resource):
     def get(self):
         return get_ksdf_topology_node_link()
 
-def kaloom_netconf_get_all():
-    with manager.connect(host=klm_host, port=830, username=klm_user, password=klm_pwd, hostkey_verify=False) as m:
-        c = m.get().xml
-        parsed_data = xmltodict.parse(c)['rpc-reply']['data']
-        return parsed_data
-
-def kaloom_netconf_rpc(rpc):
-    try:
-        with manager.connect(host=klm_host, port=830, username=klm_user, password=klm_pwd, hostkey_verify=False) as m:
-            c = m.rpc(to_ele(rpc)).xml
-            parsed_data = xmltodict.parse(c)['rpc-reply']
-            return parsed_data
-    except: 
-        return {"error": "cannot process the request"}
-
-#Kaloom Topology Graph 관련
-
-def get_ksdf_all_nodes_info_oper():
-    rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/>
-            <Fabric><FabricID>123</FabricID><Node><Name/><Role/><DeviceID/><DeviceMAC/><OperState>UP</OperState><System/></Node></Fabric>
-        </filter></get>""" 
-    return kaloom_netconf_rpc(rpc)['data']['top']['fabrics:Fabric']
-
-def get_ksdf_all_tp_oper():
-    rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/><Fabric><FabricID>123</FabricID>
-        <Node><Role></Role><TerminationPoint><OperState>UP</OperState></TerminationPoint></Node></Fabric></filter></get>""" 
-    return kaloom_netconf_rpc(rpc)['data']['top']['fabrics:Fabric']
-
-def get_ksdf_min_nodes_dict():
-    reg_nodes_dict={}
-    nodes_dict=get_ksdf_all_nodes_info_oper()['fabrics:Node']
-    for node in nodes_dict: 
-        f_name=node['fabrics:Name']
-        f_node_id=node['fabrics:NodeID']
-        f_role=node['fabrics:Role']
-        reg_nodes_dict[f_node_id]=(f_name,f_role)
-    return reg_nodes_dict
-
-def get_ksdf_topology_node_link():
-    nodes_dict=get_ksdf_min_nodes_dict()
-    link_dict={'fabric_link': [], 'user_link': []}
-
-    tp_oper=get_ksdf_all_tp_oper()
-
-    for node in tp_oper['fabrics:Node']:
-        node_id = node['fabrics:NodeID']
-        for tp in node['fabrics:TerminationPoint']:
-            tp_id=tp['fabrics:TpID']
-            assign_state=tp['fabrics:AssignmentState']
-            lldp_info=get_lldp_info(tp)
-            if assign_state == 'FABRIC_PORT':
-                link_dict['fabric_link'].append({'src': (node_id, tp_id), 'dst': (lldp_info['LLDP:SystemName'],lldp_info['LLDP:PortID']), 'detail': lldp_info})
-            elif assign_state =="USER_PORT":
-                link_dict['user_link'].append({'detail':lldp_info})
-            else: 
-                #print(assign_state)
-                #print("what's this?")
-                pass
-    topology_dict={'node_dict':nodes_dict, 'link_dict':link_dict}
-    return topology_dict
-
-def get_nodes_infos(reg_nodes_dict, node_id):
-    return reg_nodes_dict[node_id]
-
-def get_lldp_info(tp):
-    if 'fabrics:TPAnnotations' in tp:
-        anno_dict={}
-        tp_annos=tp['fabrics:TPAnnotations']
-        for anno in tp_annos:
-            if type(anno) == str:
-                anno_dict[tp_annos['fabrics:TheKey']]=tp_annos['fabrics:Value']
-            else:
-                anno_dict[anno['fabrics:TheKey']]=anno['fabrics:Value']
-        return anno_dict
+#packet_counter_per_tp
+@api.route('/api/ksdf/packet_counter/per_tp')
+class ksdf_packet_counter(Resource):
+    def get(self):
+        return {
+            "cur_pkt_counter": cur_packet_counter,
+            "cur_gcd": cur_gcd, 
+            "cur_pkt_rate": cur_gcd_rate 
+        }
 
 if __name__ == "__main__":
 
