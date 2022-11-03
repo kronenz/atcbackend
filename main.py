@@ -1,7 +1,8 @@
 #pip install flask 
+#pip install flask_restx
 #pip install flask_cors
 #pip install ncclient
-#pip xmltodict
+#pip install xmltodict
 #pip install apscheduler
 
 from flask import Flask  # 서버 구현을 위한 Flask 객체 import
