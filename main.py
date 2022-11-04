@@ -4,7 +4,7 @@
 #pip xmltodict
 #pip install apscheduler
 
-from flask import Flask  # 서버 구현을 위한 Flask 객체 import
+from flask import Flask, request  # 서버 구현을 위한 Flask 객체 import
 from flask_restx import Api, Resource  # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS, cross_origin
 
@@ -91,6 +91,32 @@ class ksdf_telemetry_info(Resource):
 def get_ksdf_telemetry_info(): 
     rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/><telemetry-system></telemetry-system></filter></get>"""
     return kaloom_netconf_rpc(rpc)['data']['top']['fabrics:telemetry-system']
+
+@api.route('/api/ksdf/telemetry/configure')
+class ksdf_telemetry_configure(Resource):
+    def post(self):
+        '{"enabled": true | false}'
+        try:
+            json_data=request.get_json()
+            enabled=json_data['enabled']
+            return set_ksdf_telemetry_configure(enabled)
+        except:
+            return {"error": "cannot process the request"}
+
+def set_ksdf_telemetry_configure(enabled):
+    if enabled:
+        rpc = """<configure-telemetry-system xmlns="urn:kaloom:faas:fabrics-telemetry">
+    <enabled> true </enabled>
+    </configure-telemetry-system>"""
+    else:
+        rpc = """<configure-telemetry-system xmlns="urn:kaloom:faas:fabrics-telemetry">
+    <enabled> false </enabled>
+    </configure-telemetry-system>"""
+    if 'ok' in kaloom_netconf_rpc(rpc):
+        return {'ok': True}
+    else: 
+        return {'ok': False}
+
 
 if __name__ == "__main__":
     #app.run(debug=True, host='192.168.15.131', port=8000)
