@@ -118,6 +118,20 @@ class ksdf_telemetry_configure(Resource):
 @api.route('/api/ksdf/telemetry/add_flow')
 class ksdf_telemetry_add_flow(Resource):
     def post(self):
+        '''
+        add a telemetry flow for the Kaloom SDF telemetry feature
+        + request
+            - body format : 
+               {"flow_name": name of the flow to register,
+                "priority_num": priority number, 
+                "ethernet_num": protocol number,
+                "sample_percentage": 1 ~ 100 (sampling percentage),
+                "cidr": dst ip in the format of x.x.x.x/x
+                }
+        + response: 
+            - {'ok': True} - when properly configured
+            - {'ok': False} - something was wrong
+        '''
         try:
             json_data=request.get_json()
             flow_name=json_data['flow_name']
@@ -155,8 +169,10 @@ def set_ksdf_telemetry_add_flow(flow_name, priority_num, ethernet_num, sample_pe
                                       eth_num=ethernet_num, sample_perc=sample_percentage)
     try:
         res=kaloom_netconf_rpc(rpc)
-        if res: 
+        if 'ok' in res: 
             return {'ok': True}
+        else: 
+            return {'ok': False}
     except:
         print({"error":True})
         return {'error': "something's wrong"}
