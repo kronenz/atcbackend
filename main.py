@@ -118,6 +118,20 @@ class ksdf_telemetry_configure(Resource):
 @api.route('/api/ksdf/telemetry/add_flow')
 class ksdf_telemetry_add_flow(Resource):
     def post(self):
+        '''
+        add a telemetry flow for the Kaloom SDF telemetry feature
+        + request
+            - body format : 
+               {"flow_name": name of the flow to register,
+                "priority_num": priority number, 
+                "ethernet_num": protocol number,
+                "sample_percentage": 1 ~ 100 (sampling percentage),
+                "cidr": dst ip in the format of x.x.x.x/x
+                }
+        + response: 
+            - {'ok': True} - when properly configured
+            - {'ok': False} - something was wrong
+        '''
         try:
             json_data=request.get_json()
             flow_name=json_data['flow_name']
@@ -126,6 +140,25 @@ class ksdf_telemetry_add_flow(Resource):
             sample_percentage=json_data['sample_percentage']
             cidr=json_data['cidr']
             return set_ksdf_telemetry_add_flow(flow_name, priority_num, ethernet_num, sample_percentage, cidr)
+        except:
+            return {"error": "cannot process the request"}
+
+@api.route('/api/ksdf/telemetry/remove_flow')
+class ksdf_telemetry_remove_flow(Resource):
+    def post(self):
+        '''
+        remove a telemetry flow for the Kaloom SDF
+        + request
+            - body format : 
+               {"flow_name": name of the flow to remove}
+        + response: 
+            - {'ok': True} - when properly configured
+            - {'ok': False} - something was wrong
+        '''
+        try:
+            json_data=request.get_json()
+            flow_name=json_data['flow_name']
+            return set_ksdf_telemetry_remove_flow(flow_name)
         except:
             return {"error": "cannot process the request"}
 
@@ -155,13 +188,29 @@ def set_ksdf_telemetry_add_flow(flow_name, priority_num, ethernet_num, sample_pe
                                       eth_num=ethernet_num, sample_perc=sample_percentage)
     try:
         res=kaloom_netconf_rpc(rpc)
-        if res: 
+        if 'ok' in res: 
             return {'ok': True}
+        else: 
+            return {'ok': False}
     except:
         print({"error":True})
         return {'error': "something's wrong"}
 
+def set_ksdf_telemetry_remove_flow(flow_name):
+    rpc="""<remove-telemetry-flow xmlns="urn:kaloom:faas:fabrics-telemetry">
+      <name>{flow_name}</name>
+    </remove-telemetry-flow>""".format(flow_name=flow_name)
+
+    try:
+        res=kaloom_netconf_rpc(rpc)
+        if 'ok' in (res):
+            return {"ok": True}
+        else:
+            return {"ok": False}
+    except:
+        return({"error":True})
+
 if __name__ == "__main__":
-    #app.run(debug=True, host='192.168.15.131', port=8000)
-    app.run(debug=True, host='0.0.0.0', port=8000)
+    app.run(debug=True, host='192.168.15.131', port=8000)
+    #app.run(debug=True, host='0.0.0.0', port=8000)
 
