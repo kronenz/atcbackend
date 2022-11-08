@@ -45,6 +45,11 @@ api = Api(app)  # Flask 객체에 Api 객체 등록
 @api.route('/hello')  # 데코레이터 이용, '/hello' 경로에 클래스 등록
 class HelloWorld(Resource):
     def get(self):  # GET 요청시 리턴 값에 해당 하는 dict를 JSON 형태로 반환
+        '''
+        설명 첫줄입니다
+        + 항목 1 
+            - 소항목 2
+        '''
         return {"hello": "world!"}
 
 @api.route('/api/ksdf/get_all')
@@ -95,11 +100,32 @@ def get_ksdf_telemetry_info():
 @api.route('/api/ksdf/telemetry/configure')
 class ksdf_telemetry_configure(Resource):
     def post(self):
-        '{"enabled": true | false}'
+        '''
+        Enable/disable the Kaloom SDF telemetry feature
+        + request
+            - body format : {"enabled": true | false}
+        + response: 
+            - {'ok': True} - when properly configured
+            - {'ok': False} - something was wrong
+        '''
         try:
             json_data=request.get_json()
             enabled=json_data['enabled']
             return set_ksdf_telemetry_configure(enabled)
+        except:
+            return {"error": "cannot process the request"}
+
+@api.route('/api/ksdf/telemetry/add_flow')
+class ksdf_telemetry_add_flow(Resource):
+    def post(self):
+        try:
+            json_data=request.get_json()
+            flow_name=json_data['flow_name']
+            priority_num=json_data['priority_num']
+            ethernet_num=json_data['ethernet_num']
+            sample_percentage=json_data['sample_percentage']
+            cidr=json_data['cidr']
+            return set_ksdf_telemetry_add_flow(flow_name, priority_num, ethernet_num, sample_percentage, cidr)
         except:
             return {"error": "cannot process the request"}
 
@@ -117,6 +143,23 @@ def set_ksdf_telemetry_configure(enabled):
     else: 
         return {'ok': False}
 
+def set_ksdf_telemetry_add_flow(flow_name, priority_num, ethernet_num, sample_percentage, cidr):
+    rpc="""<configure-telemetry-flow xmlns="urn:kaloom:faas:fabrics-telemetry">
+  <name>{flow_name}</name>
+  <priority>{prior_num}</priority>
+  <ethernet-type>{eth_num}</ethernet-type>
+  <destination-address-prefix>{cidr}</destination-address-prefix>
+  <exclude-filter>false</exclude-filter>
+  <sample-percentage>{sample_perc}</sample-percentage>
+</configure-telemetry-flow>""".format(flow_name=flow_name, prior_num=priority_num, cidr=cidr,
+                                      eth_num=ethernet_num, sample_perc=sample_percentage)
+    try:
+        res=kaloom_netconf_rpc(rpc)
+        if res: 
+            return {'ok': True}
+    except:
+        print({"error":True})
+        return {'error': "something's wrong"}
 
 if __name__ == "__main__":
     #app.run(debug=True, host='192.168.15.131', port=8000)
