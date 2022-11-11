@@ -15,7 +15,7 @@ from ksdf_telemetry import *
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
-# Packet Counter 수집 Sensor
+### Packet Counter 수집 Sensor
 
 collection_interval=5
 cur_packet_counter=get_cur_counter()
@@ -37,7 +37,7 @@ sched = BackgroundScheduler(daemon=True)
 sched.add_job(packet_counter_sensor, 'interval', seconds=collection_interval)
 sched.start()
 
-##Flask Setup
+###Flask Setup
 
 app = Flask(__name__)  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 CORS(app)
@@ -78,7 +78,7 @@ class ksdf_topology_node_link(Resource):
     def get(self):
         return get_ksdf_topology_node_link()
 
-#packet_counter_per_tp
+### packet_counter_per_tp
 @api.route('/api/ksdf/packet_counter/per_tp')
 class ksdf_packet_counter(Resource):
     def get(self):
@@ -88,7 +88,8 @@ class ksdf_packet_counter(Resource):
             "cur_pkt_rate": cur_gcd_rate 
         }
 
-#telemetry system info
+### telemetry system
+
 @api.route('/api/ksdf/telemetry/info')
 class ksdf_telemetry_info(Resource):
     def get(self):
@@ -162,6 +163,8 @@ class ksdf_telemetry_remove_flow(Resource):
             return set_ksdf_telemetry_remove_flow(flow_name)
         except:
             return {"error": "cannot process the request"}
+
+### vFabric
 
 if __name__ == "__main__":
     app.run(debug=True, host='192.168.15.131', port=8000)
