@@ -9959,3 +9959,10 @@ KeyError: 'fabrics:Results'
 192.168.15.174 - - [08/Nov/2022 02:15:52] "GET /api/ksdf/packet_counter/per_tp HTTP/1.1" 200 -
 192.168.15.174 - - [08/Nov/2022 02:17:20] "GET /api/ksdf/topology/node_link HTTP/1.1" 200 -
 192.168.15.174 - - [08/Nov/2022 02:17:20] "GET /api/ksdf/packet_counter/per_tp HTTP/1.1" 200 -
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Detected change in '/home/forwiz/atc_3rd_year/backend/atcbackend/main.py', reloading
+ * Restarting with watchdog (inotify)
+ * Debugger is active!
+ * Debugger PIN: 778-580-577
