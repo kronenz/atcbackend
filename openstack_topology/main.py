@@ -22,10 +22,54 @@ class HelloWorld(Resource):
         return {"hello": "world!"}
 
 @api.route('/ostck/topology/servers_on_hosts')
-class get_ostck_topology_servers_on_hosts(Resource):
+class ostck_topology_servers_on_hosts(Resource):
     def get(self):
-        return ostck_topology_servers_on_hosts()
-        
+        """
+        get server info on each compute node
+        + for the details please refer to 
+        https://docs.openstack.org/openstacksdk/latest/user/resources/compute/v2/server.html
+        """
+        return get_ostck_topology_servers_on_hosts()
+
+@api.route('/ostck/topology/server_info')
+class ostck_topology_server_info(Resource):
+    def get(self):
+        """ 
+        get detailed info of a server specified by the provided server name or id
+        + server id needs be included in the request body like the following
+        {
+            "server_id": "2f70f301-b039-42cc-b043-1ed47011e1a8"
+        }
+        + for the details please refer to 
+        https://docs.openstack.org/openstacksdk/latest/user/resources/compute/v2/server.html
+        """
+        try:
+            json_data=request.get_json()
+            server_id=json_data['server_id']
+        except:
+            return {"error": "server id not provided"}
+        return get_ostck_topology_server_info(server_id)
+
+@api.route('/ostck/topology/hypervisors/detailed_info')
+class ostck_topology_hypervisors_detailed_info(Resource):
+    def get(self):
+        """ 
+        get detailed info for the configured hypervisors (compute nodes)
+        + for the details please refer to 
+        https://docs.openstack.org/openstacksdk/latest/user/resources/compute/v2/hypervisor.html
+        """
+        return get_ostck_topology_hypervisors_info(details=True)
+
+@api.route('/ostck/topology/hypervisors/info')
+class ostck_topology_hypervisors_info(Resource):
+    def get(self):
+        """ 
+        get info for the configured hypervisors (compute nodes)
+        + for the details please refer to 
+        https://docs.openstack.org/openstacksdk/latest/user/resources/compute/v2/hypervisor.html
+        """
+        return get_ostck_topology_hypervisors_info(details=False)
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=9000)
 
