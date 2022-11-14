@@ -36,3 +36,19 @@ def get_ostck_topology_hypervisors_info(details=False):
         hypervisor_array.append(hypervisor)
     return hypervisor_array
 
+def live_migrate(vm_id, host=None):
+    #vm_id="2ae44f46-7f04-4280-87f7-0fdf10f75a29"
+    #mg_result=conn.compute.live_migrate_server("2ae44f46-7f04-4280-87f7-0fdf10f75a29", host="compute1.forwiz-os.com", force=False, block_migration=None)
+    try:
+        mg_result=conn.compute.live_migrate_server(vm_id, host=host, force=False, block_migration=None)
+        return {"ok":True}
+    except openstack.exceptions.BadRequestException as err:
+        return {"error":err}
+    except openstack.exceptions.ResourceNotFound as err:
+        return(err)
+    except:
+        return {"error": "something's not okay"}
+
+    #https://www.mirantis.com/blog/block-live-migration-openstack-environment/ 
+    #https://docs.openstack.org/openstacksdk/latest/user/proxies/compute.html
+    print(mg_result)

@@ -70,6 +70,29 @@ class ostck_topology_hypervisors_info(Resource):
         """
         return get_ostck_topology_hypervisors_info(details=False)
 
+@api.route('/ostck/topolgoy/live_migrate')
+class ostck_topology_live_migrate(Resource):
+    def get(self):
+        """
+        live migrate a vm to another host
+        - request body example
+        {
+            "vm_id": "2ae44f46-7f04-4280-87f7-0fdf10f75a29", (required)
+            "host": "compute3.forwiz-os.com"(optional)
+        }
+        """
+        try:
+            json_data=request.get_json()
+            vm_id=json_data['vm_id']
+        except:
+            return {"error": "no vm_id provided"}
+        if 'host' in json_data:
+            host=json_data['host']
+        else:
+            host=None
+        res=live_migrate(vm_id, host=host)
+        return res
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=9000)
 
