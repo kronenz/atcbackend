@@ -70,7 +70,7 @@ class ostck_topology_hypervisors_info(Resource):
         """
         return get_ostck_topology_hypervisors_info(details=False)
 
-@api.route('/ostck/topolgoy/live_migrate')
+@api.route('/ostck/topology/live_migrate')
 class ostck_topology_live_migrate(Resource):
     def get(self):
         """
