@@ -3,13 +3,12 @@ from flask_restx import Api, Resource  # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS, cross_origin
 
 from opstk_topology import *
-
+from opstk_network_topology import *
 ###Flask Setup
 
 app = Flask(__name__)  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 CORS(app)
 api = Api(app)  # Flask 객체에 Api 객체 등록
-
 
 @api.route('/hello')  # 데코레이터 이용, '/hello' 경로에 클래스 등록
 class HelloWorld(Resource):
@@ -20,6 +19,8 @@ class HelloWorld(Resource):
             - 소항목 2
         '''
         return {"hello": "world!"}
+
+#### topology info
 
 @api.route('/ostck/topology/servers_on_hosts')
 class ostck_topology_servers_on_hosts(Resource):
@@ -93,6 +94,24 @@ class ostck_topology_live_migrate(Resource):
         res=live_migrate(vm_id, host=host)
         return res
 
+#### network info
+
+@api.route('/ostck/network/ports_on_servers')
+class ostck_network_ports_on_servers(Resource):
+    def get(self):
+        """
+        get port-info on each server
+        """
+        return get_ports_on_servers()
+
+@api.route('/ostck/network/subnets_on_networks')
+class ostck_network_subnets_on_networks(Resource):
+    def get(self):
+        """
+        get subnet-info on each network
+        """
+        return get_subnets_on_networks()
+
 if __name__ == "__main__":
-    app.run(debug=True, host='192.168.15.131', port=9000)
+    app.run(debug=True, host='0.0.0.0', port=9000)
 
