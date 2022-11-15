@@ -94,5 +94,5 @@ class ostck_topology_live_migrate(Resource):
         return res
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=9000)
+    app.run(debug=True, host='192.168.15.131', port=9000)
 
