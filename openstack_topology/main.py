@@ -72,7 +72,7 @@ class ostck_topology_hypervisors_info(Resource):
 
 @api.route('/ostck/topology/live_migrate')
 class ostck_topology_live_migrate(Resource):
-    def get(self):
+    def post(self):
         """
         live migrate a vm to another host
         - request body example
