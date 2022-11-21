@@ -37,17 +37,16 @@ class ostck_topology_server_info(Resource):
     def get(self):
         """ 
         get detailed info of a server specified by the provided server name or id
-        + server id needs be included in the request body like the following
-        {
-            "server_id": "2f70f301-b039-42cc-b043-1ed47011e1a8"
-        }
+        + server id needs be included in the request params like the following
+        
+            ?server_id=2f70f301-b039-42cc-b043-1ed47011e1a8
+        
         + for the details please refer to 
         https://docs.openstack.org/openstacksdk/latest/user/resources/compute/v2/server.html
         """
-        try:
-            json_data=request.get_json()
-            server_id=json_data['server_id']
-        except:
+
+        server_id=request.args.get('server_id')
+        if not server_id:
             return {"error": "server id not provided"}
         return get_ostck_topology_server_info(server_id)
 

@@ -16,6 +16,8 @@ def ksdf_all_node_tp_ids_oper():
     rpc="""<get><filter type="subtree"><top xmlns="urn:kaloom:faas:fabrics"/><Fabric><FabricID>123</FabricID>
 <Node><Role></Role><TerminationPoint><OperState>UP</OperState><TpID/></TerminationPoint></Node></Fabric></filter></get>""" 
     tp_oper=kaloom_netconf_rpc(rpc)['data']['top']['fabrics:Fabric']['fabrics:Node']
+    #tp_oper=kaloom_netconf_rpc(rpc)
+    #print(tp_oper)
     for node in tp_oper:
         node_id=node['fabrics:NodeID']
         tp_dict[node_id]=[]
