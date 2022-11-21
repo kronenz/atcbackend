@@ -13,6 +13,8 @@ from ksdf_topology import *
 from ksdf_packet_counter import *
 from ksdf_telemetry import *
 
+from elk_bulk_post import *
+
 from apscheduler.schedulers.background import BackgroundScheduler
 
 ### Packet Counter 수집 Sensor
@@ -31,6 +33,8 @@ def packet_counter_sensor():
     #print(cur_gcd)
     cur_gcd_rate=get_rate_from_gcd(cur_gcd)
     cur_packet_counter=next_cur_packet_counter
+
+    bulk_post_ksdf_metric_to_els(cur_gcd_rate)
     #print(cur_gcd_rate)
 
 sched = BackgroundScheduler(daemon=True)
@@ -167,6 +171,6 @@ class ksdf_telemetry_remove_flow(Resource):
 ### vFabric
 
 if __name__ == "__main__":
-    app.run(debug=True, host='192.168.15.131', port=8000)
+    app.run(debug=True, host='0.0.0.0', port=8000)
     #app.run(debug=True, host='0.0.0.0', port=8000)
 
