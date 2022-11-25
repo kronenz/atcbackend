@@ -21,6 +21,16 @@ class HelloWorld(Resource):
         return {"hello": "world!"}
 
 #### topology info
+@api.route('/ostck/project/id_name')
+class ostck_project_id_name(Resource):
+    def get(self):
+        """
+        get the most basic project info configured on our openstack clusters
+        + for the details please refer to 
+        https://docs.openstack.org/openstacksdk/latest/user/proxies/identity_v3.html
+        """
+        return get_ostck_project_id_name()
+
 
 @api.route('/ostck/topology/servers_on_hosts')
 class ostck_topology_servers_on_hosts(Resource):

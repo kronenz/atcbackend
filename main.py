@@ -19,7 +19,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 ### Packet Counter 수집 Sensor
 
-collection_interval=5
+collection_interval=15
 cur_packet_counter=get_cur_counter()
 cur_gcd=None
 cur_gcd_rate=None
@@ -34,7 +34,8 @@ def packet_counter_sensor():
     cur_gcd_rate=get_rate_from_gcd(cur_gcd)
     cur_packet_counter=next_cur_packet_counter
 
-    bulk_post_ksdf_metric_to_els(cur_gcd_rate)
+    post_res=bulk_post_ksdf_metric_to_els(cur_gcd_rate)
+    #print(post_res)
     #print(cur_gcd_rate)
 
 sched = BackgroundScheduler(daemon=True)
@@ -171,6 +172,6 @@ class ksdf_telemetry_remove_flow(Resource):
 ### vFabric
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=8000)
+    app.run(debug=True, host='192.168.15.131', port=8000)
     #app.run(debug=True, host='0.0.0.0', port=8000)
 

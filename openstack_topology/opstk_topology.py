@@ -3,6 +3,11 @@ import openstack
 ###Openstack SDK Connection 
 conn = openstack.connect(cloud='admin')
 
+def get_ostck_project_id_name():
+    project_name_dict={}
+    for project in conn.identity.projects():
+        project_name_dict[project.id]=project.name
+
 def get_ostck_topology_servers_on_hosts():
     host_server_dict={}
     for server in conn.compute.servers(all_projects=True):
